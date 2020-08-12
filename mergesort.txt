@@ -1,1 +1,93 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+/*
+steps:
+1. user inputs data
+2. Call sorter().
+3. split array into 2 parts recursively
+4. split until one element in both halves.
+5. call halfer
+6. start to combine data from min to middle, middle +1 , max.
+7. display results when finally returned to main. Sorted!
+*/
+
+// We have min to middle and middle+1 to max already sorted.
+void halfer(int * data, int min, int max, int middle) {
+ 
+  int var1, var2, var3, vararry[max - min + 1];
+  var1 = min;
+  var3 = 0;
+  var2 = middle + 1;
+
+  // this is going to merge the two parts into  the vararry[].
+  while (var1 <= middle && var2 <= max) {
+    if (data[var1] < data[var2]) {
+      vararry[var3] = data[var1];
+      var3++;
+      var1++;
+    } else {
+      vararry[var3] = data[var2];
+      var3++;
+      var2++;
+    }
+  }
+
+  
+  // insertion from var1- midlle to the vararry
+  while (var1 <= middle) {
+    vararry[var3] = data[var1];
+    var3++;
+    var1++;
+  }
+
+  // insertion of remaning values
+  while (var2 <= max) {
+    vararry[var3] = data[var2];
+    var3++;
+    var2++;
+  }
+
+  // assigning the sorted data to the data array.
+  for (var1 = min; var1 <= max; var1++) {
+    data[var1] = vararry[var1 - min];
+  }
+}
+
+// this function is what is sorting it will split the array of numbers into 2 parts
+void sorter(int * data, int min, int max) {
+  int middle;
+  if (min < max) {
+    middle = (min + max) / 2;
+    // Split the data into two half.
+    sorter(data, min, middle);
+    sorter(data, middle + 1, max);
+
+    // this will merge the array to get a sorted output.
+    halfer(data, min, max, middle);
+  }
+}
+
+int main() {
+  int x, z;
+  cout << endl;
+  cout << "Please enter the number of elements you would like to sort: ";
+  cin >> x;
+
+  int elementholder[x];
+  cout << "Enter elements now: " << endl;
+  for (z = 0; z < x; z++) {
+    cout << "" << z + 1 << ": ";
+    cin >> elementholder[z];
+  }
+
+  sorter(elementholder, 0, x - 1);
+
+  cout << endl;
+  cout << "Sorted List: ";
+  for (z = 0; z < x; z++)
+    cout << " " << elementholder[z];
+
+  return 0;
+}
 
