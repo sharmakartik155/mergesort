@@ -17,4 +17,4 @@ becomes : 3 4 6 9     2 5 8 10
 becomes : 2 3 4 5 6 8 9 10
 Finally: 2 3 4 5 6 8 9 10 array is fully sorted;
 
-Code Used: 
+Code Used: in mergesort.txt
