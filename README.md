@@ -10,3 +10,4 @@ Class 340 assignment last question:;
 
 Code Used: in mergesort.txt;
 example of sorting in explanation.txt;
+script in script.txt
